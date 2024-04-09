@@ -16,6 +16,7 @@ projects:
   apply_requirements: [mergeable, approved, undiverged]
   import_requirements: [mergeable, approved, undiverged]
   workflow: myworkflow
+  
 workflows:
   myworkflow:
     plan:
