@@ -5,18 +5,15 @@ parallel_plan: true
 parallel_apply: true
 projects:
 - name: terraform
-  dir: ./terraform
+  dir: ./terraform/
   workspace: default
-  terraform_version: v1.1.1
+  terraform_version: v1.2.0
   delete_source_branch_on_merge: true
   autoplan:
     when_modified: ["*.tf", "../modules/**/*.tf", ".terraform.lock.hcl"]
     enabled: true
-  plan_requirements: [mergeable, approved, undiverged]
-  apply_requirements: [mergeable, approved, undiverged]
-  import_requirements: [mergeable, approved, undiverged]
+  apply_requirements: [mergeable, approved]
   workflow: myworkflow
-  
 workflows:
   myworkflow:
     plan:
