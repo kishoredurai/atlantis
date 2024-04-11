@@ -2,7 +2,7 @@ version: 3
 automerge: true
 delete_source_branch_on_merge: true
 parallel_plan: true
-parallel_apply: true
+parallel_apply: false
 projects:
 - name: terraform
   dir: ./terraform/
