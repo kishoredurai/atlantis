@@ -1,10 +1,14 @@
 
+
+
 resource "aws_s3_bucket" "kishore_bucket" {
   bucket = var.bucket_name
+
   tags = {
-   Description = "Code Testing bucket"
+   Description = "Testing code"
   }
 }
+
 
 resource "aws_s3_object" "finance_data" {
   bucket = aws_s3_bucket.kishore_bucket.id
