@@ -1,4 +1,9 @@
-# Installing Atlantis using Helm Chart
+# Atlantis
+
+Atlantis is an open-source technology that allows the engineer/approver to review the changes in the infrastructure as well as evaluate that the proposed change is the actual change that will be executed on your infrastructure before applying it. Atlantis used with Terraform can be used as a CICD for Infrastructure as Code (IAC).
+
+### Atlantis Overview
+![alt text](image.png)
 
 ### Required
 - Install eksctl
@@ -7,6 +12,10 @@
 ---
 
 
+
+
+## Atlantis using Helm chart
+
 ### Files
 
 `atlantis.yaml` -  project configuration for atlantis
@@ -14,7 +23,6 @@
 `atlantis-value.yml` - Helm values for atlantis
 
 ---
-
 
 ### Create cluster using eksctl
 
@@ -76,26 +84,24 @@ kubectl get svc --namespace default atlantis -o jsonpath='{.status.loadBalancer.
 ```
 
 
-### Github app
+### Configuring Github app
 
-To integrate github app with atlantis just add below code to `atlantis-value.yml`
+- Visit `https://$ATLANTIS_HOST/github-app/setup` and click on Setup to create the app on GitHub.
+
+
+Add below code to `atlantis-value.yml`
 
 ```yaml
-    # Github App integration
-        - name: ATLANTIS_GH_APP_ID
-          valueFrom:
-            secretKeyRef:
-              name: atlantis-github-app
-              key: ghAppID
-        - name: ATLANTIS_GH_APP_KEY
-          valueFrom:
-            secretKeyRef:
-              name: atlantis-github-app
-              key: ghAppKey
-        - name: ATLANTIS_GH_WEBHOOK_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: atlantis-github-app
-              key: ghWebhookSecret
+githubApp:
+  id: ****
+  secret: ****
+  key: *****
+
 ```
 
+
+### Add On Integration
+
+#### Infracost 
+Infracost its a tool that can calculate cost estimates of infrastructure and comments on our PR
+https://www.infracost.io/
